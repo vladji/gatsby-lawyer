@@ -1,28 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, graphql } from "gatsby";
-import { getImage } from "gatsby-plugin-image";
 
 import Layout from "../components/Layout";
+import Slider from "../components/Slider";
 import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
-import FullWidthImage from "../components/FullWidthImage";
 
 // eslint-disable-next-line
 export const IndexPageTemplate = ({
-  image,
-  title,
+  sliderData,
   heading,
-  subheading,
   mainpitch,
   description,
   intro,
 }) => {
-  const heroImage = getImage(image) || image;
-
   return (
-    <div>
-      <FullWidthImage img={heroImage} title={title} subheading={subheading} />
+    <>
+      <Slider sliderData={sliderData} />
       <section className="section section--gradient">
         <div className="container">
           <div className="section">
@@ -70,32 +65,29 @@ export const IndexPageTemplate = ({
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
 IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
   heading: PropTypes.string,
-  subheading: PropTypes.string,
   mainpitch: PropTypes.object,
   description: PropTypes.string,
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
+  sliderData: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-
+  console.log('frontmatter', frontmatter)
   return (
     <Layout>
       <IndexPageTemplate
-        image={frontmatter.image}
-        title={frontmatter.title}
+        sliderData={frontmatter.slider}
         heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
         mainpitch={frontmatter.mainpitch}
         description={frontmatter.description}
         intro={frontmatter.intro}
@@ -118,19 +110,21 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        title
-        image {
-          childImageSharp {
-            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
-          }
-        }
         heading
-        subheading
+        tags
         mainpitch {
           title
           description
         }
         description
+        slider {
+          image {
+            childImageSharp {
+              gatsbyImageData(quality: 100, layout: FULL_WIDTH)
+            }
+          }
+          text
+        }
         intro {
           blurbs {
             image {
