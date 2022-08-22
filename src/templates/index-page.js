@@ -68,11 +68,11 @@ IndexPageTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
+  sliderData: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  console.log('frontmatter', frontmatter)
   return (
     <Layout>
       <IndexPageTemplate

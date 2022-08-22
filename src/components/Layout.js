@@ -54,6 +54,7 @@ const TemplateWrapper = ({ children }) => {
       <div className="content-wrapper">
         {children}
       </div>
+      {children}
       <Footer />
     </div>
   );
