@@ -68,7 +68,6 @@ IndexPageTemplate.propTypes = {
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
-  sliderData: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
