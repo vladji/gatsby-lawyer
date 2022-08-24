@@ -6,13 +6,12 @@ import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 // eslint-disable-next-line
 export const IndexPageTemplate = ({
   sliderData,
-  heading,
   mainpitch,
-  description,
   intro,
 }) => {
   return (
@@ -25,30 +24,23 @@ export const IndexPageTemplate = ({
               <div className="column is-10 is-offset-1">
                 <div className="content">
                   <div className="content">
-                    <div className="tile">
-                      <h1 className="title">{mainpitch.title}</h1>
-                    </div>
-                    <div className="tile">
-                      <h3 className="subtitle">{mainpitch.description}</h3>
-                    </div>
-                  </div>
-                  <div className="columns">
-                    <div className="column is-12">
-                      <h3 className="has-text-weight-semibold is-size-2">
-                        {heading}
-                      </h3>
-                      <p>{description}</p>
+                    <h1 className="title">{mainpitch.title}</h1>
+                    <div className="content__block">
+                      <div className="content__image">
+                        <PreviewCompatibleImage imageInfo={mainpitch} />
+                      </div>
+                      <p className="subtitle">{mainpitch.description}</p>
                     </div>
                   </div>
-                  <Features gridItems={intro.blurbs} />
-                  <div className="columns">
+                  <Features header={intro.header} gridItems={intro.blurbs} />
+                  {/* <div className="columns">
                     <div className="column is-12 has-text-centered">
                       <Link className="btn" to="/products">
                         See all products
                       </Link>
                     </div>
-                  </div>
-                  <div className="column is-12">
+                  </div> */}
+                  {/* <div className="column is-12">
                     <h3 className="has-text-weight-semibold is-size-2">
                       Latest stories
                     </h3>
@@ -58,7 +50,7 @@ export const IndexPageTemplate = ({
                         Read more
                       </Link>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -70,14 +62,12 @@ export const IndexPageTemplate = ({
 };
 
 IndexPageTemplate.propTypes = {
+  sliderData: PropTypes.array,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  heading: PropTypes.string,
   mainpitch: PropTypes.object,
-  description: PropTypes.string,
   intro: PropTypes.shape({
     blurbs: PropTypes.array,
   }),
-  sliderData: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
@@ -87,9 +77,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <IndexPageTemplate
         sliderData={frontmatter.slider}
-        heading={frontmatter.heading}
         mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
         intro={frontmatter.intro}
       />
     </Layout>
@@ -110,13 +98,6 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        heading
-        tags
-        mainpitch {
-          title
-          description
-        }
-        description
         slider {
           image {
             childImageSharp {
@@ -125,7 +106,17 @@ export const pageQuery = graphql`
           }
           text
         }
+        mainpitch {
+          image {
+            childImageSharp {
+              gatsbyImageData(width: 240, quality: 64, layout: CONSTRAINED)
+            }
+          }
+          title
+          description
+        }
         intro {
+          header
           blurbs {
             image {
               childImageSharp {
@@ -134,8 +125,14 @@ export const pageQuery = graphql`
             }
             text
           }
-          heading
+        }
+        products {
+          title
           description
+          sublist {
+            title
+            description
+          }
         }
       }
     }

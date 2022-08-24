@@ -46,28 +46,54 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
-          - { label: Image, name: image, widget: image }
-          - { label: Heading, name: heading, widget: string }
-          - { label: "Tags", name: "tags", widget: "list" }
+          - {
+              label: Slider,
+              name: slider,
+              widget: list,
+              fields:
+                [
+                  { label: Image, name: image, widget: image },
+                  { label: Text, name: text, widget: text },
+                ],
+            }
           - {
               label: Mainpitch,
               name: mainpitch,
               widget: object,
               fields:
                 [
+                  { label: Image, name: image, widget: image },
                   { label: Title, name: title, widget: string },
                   { label: Description, name: description, widget: text },
                 ],
             }
-          - { label: Description, name: description, widget: string }
+          - {
+              label: Products,
+              name: products,
+              widget: list,
+              fields:
+                [
+                  { label: Title, name: title, widget: string },
+                  { label: Description, name: description, widget: text },
+                  {
+                    label: Sublist,
+                    name: sublist,
+                    widget: list,
+                    fields:
+                      [
+                        { label: Title, name: title, widget: string },
+                        { label: Description, name: description, widget: text },
+                      ],
+                  },
+                ],
+            }
           - {
               label: Intro,
               name: intro,
               widget: object,
               fields:
                 [
-                  { label: Heading, name: heading, widget: string },
-                  { label: Description, name: description, widget: text },
+                  { label: Header, name: header, widget: string },
                   {
                     label: Blurbs,
                     name: blurbs,

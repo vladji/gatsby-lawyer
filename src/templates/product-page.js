@@ -125,7 +125,8 @@ const ProductPage = ({ data }) => {
 
   return (
     <Layout>
-      <ProductPageTemplate
+      <div>Услуги</div>
+      {/* <ProductPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -135,7 +136,7 @@ const ProductPage = ({ data }) => {
         testimonials={frontmatter.testimonials}
         fullImage={frontmatter.full_image}
         pricing={frontmatter.pricing}
-      />
+      /> */}
     </Layout>
   );
 };

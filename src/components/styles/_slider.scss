@@ -1,0 +1,57 @@
+.slider-wrapper {
+  position: relative;
+
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+
+    .text {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 2rem;
+      border-radius: 2px;
+      font-size: 2rem;
+      text-align: center;
+      color: #fff;
+      background-color: $orange;
+      box-shadow: 0 0 5px 0 $orange;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    &.prev {
+      opacity: 0;
+      animation: prev 1s ease-in-out;
+    }
+
+    &.next {
+      position: static;
+      opacity: 1;
+      animation: next 1s ease-in-out;
+    }
+
+    @keyframes prev {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes next {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}

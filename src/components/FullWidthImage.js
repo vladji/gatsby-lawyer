@@ -10,9 +10,7 @@ const FullWidthImage = (props) => {
     image,
     imgPosition = "top left",
   } = props;
-  console.log('FullWidthImage')
   const img = getImage(image) || image;
-
   return (
     <React.Fragment>
       <div

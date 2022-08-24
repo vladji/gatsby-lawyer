@@ -1,0 +1,39 @@
+.header {
+	padding: 2rem 0;
+	color: $text-black;
+
+	&__left, &__right {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+	}
+
+	.container {
+		display: flex;
+	}
+
+	a,
+	span {
+		display: block;
+		color: $text-black;
+	}
+
+	&__main {
+		flex-grow: 1;
+
+		span {
+			text-align: center;
+		}
+	}
+
+	&__title {
+		font-size: 2rem;
+		font-weight: 600;
+		line-height: 1;
+		color: $headers-black;
+	}
+
+	&__adress {
+		margin-top: 10px;
+	}
+}

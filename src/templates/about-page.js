@@ -37,11 +37,12 @@ const AboutPage = ({ data }) => {
 
   return (
     <Layout>
-      <AboutPageTemplate
+      <div>О себе</div>
+      {/* <AboutPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
         content={post.html}
-      />
+      /> */}
     </Layout>
   );
 };
