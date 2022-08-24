@@ -8,9 +8,7 @@ const IndexPagePreview = ({ entry, getAsset }) => {
   if (data) {
     return (
       <IndexPageTemplate
-        image={getAsset(data.image)}
-        heading={data.heading}
-        description={data.description}
+        sliderData={data.slider.map(slide => ({ image: getAsset(slide.image), text: slide.text }))}
         intro={data.intro || { blurbs: [] }}
         mainpitch={data.mainpitch || {}}
       />

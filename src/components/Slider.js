@@ -1,32 +1,55 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import FullWidthImage from "./FullWidthImage";
 
-import './styles/slider.scss'
-
 const Slider = ({ sliderData }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const sliderRef = useRef(null);
   const lengthData = sliderData.length;
 
+  let currentIndex = 0;
+  let nextIndex = 1;
   const calcNextIndex = () => {
-    console.log('lengthData', lengthData);
-    if (currentIndex + 1 === lengthData) {
-      return 0;
+    if (nextIndex + 1 === lengthData) {
+      currentIndex = lengthData - 1;
+      nextIndex = 0;
+      return;
     }
-    return currentIndex + 1;
+    if (currentIndex + 1 === lengthData) {
+      currentIndex = 0;
+      nextIndex += 1;
+      return;
+    }
+    currentIndex += 1;
+    nextIndex += 1;
   };
-  console.log('currentIndex', currentIndex);
-  //setTimeout(() => setCurrentIndex((currentIndex + 1) % lengthData), 5000);
-  const imgRef = useRef(null);
 
-  const images = sliderData.map((slide, index) => <FullWidthImage key={index} image={slide.image} />)
+  const images = sliderData.map((slide, index) => <FullWidthImage key={index} image={slide.image} />);
+
+  useEffect(() => {
+    const elementsArr = Array.from(sliderRef.current.childNodes);
+    elementsArr[currentIndex].classList.add('next');
+
+    const timerId = setInterval(() => {
+      elementsArr[currentIndex].classList.remove('next');
+      elementsArr[currentIndex].classList.add('prev');
+      elementsArr[nextIndex].classList.remove('prev');
+      elementsArr[nextIndex].classList.add('next');
+      calcNextIndex();
+    }, 10000);
+
+    return () => clearInterval(timerId)
+  });
 
   return (
     <div
-      ref={imgRef}
+      ref={sliderRef}
       className="slider-wrapper">
-      <div className={'slider'}>{images[currentIndex]}</div>
-      <div className={'slider'}>{images[calcNextIndex()]}</div>
+      {images.map((image, index) => (
+        <div key={index} className={'slide'}>
+          {image}
+          <span className="text">{sliderData[index].text}</span>
+        </div>
+      ))}
     </div>
   )
 }

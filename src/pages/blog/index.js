@@ -7,7 +7,8 @@ export default class BlogIndexPage extends React.Component {
   render() {
     return (
       <Layout>
-        <div
+        <div>Тарифы</div>
+        {/* <div
           className="full-width-image-container margin-top-0"
           style={{
             backgroundImage: `url('/img/blog-index.jpg')`,
@@ -31,7 +32,7 @@ export default class BlogIndexPage extends React.Component {
               <BlogRoll />
             </div>
           </div>
-        </section>
+        </section> */}
       </Layout>
     );
   }
