@@ -2,13 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-
-	.content-wrapper {
-		flex-grow: 1;
-	}
 }
 
-.content__block {
+.float-content {
 	&::after {
 		content: "";
 		display: block;
@@ -16,7 +12,7 @@
 	}
 }
 
-.content__image {
+.float-content__image {
 	margin: 0 1.5rem 1.5rem 0;
 	float: left;
 

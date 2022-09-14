@@ -8,39 +8,28 @@ import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
-// eslint-disable-next-line
 export const IndexPageTemplate = ({
-  sliderData,
-  mainpitch,
-  intro,
-}) => {
-  return (
-    <>
-      <Slider sliderData={sliderData} />
-      <section className="section section--gradient">
-        <div className="container">
-          <div className="section">
-            <div className="columns">
-              <div className="column is-10 is-offset-1">
-                <div className="content">
-                  <div className="content">
-                    <h1 className="title">{mainpitch.title}</h1>
-                    <div className="content__block">
-                      <div className="content__image">
-                        <PreviewCompatibleImage imageInfo={mainpitch} />
-                      </div>
-                      <p className="subtitle">{mainpitch.description}</p>
-                    </div>
-                  </div>
-                  <Features header={intro.header} gridItems={intro.blurbs} />
-                  {/* <div className="columns">
+                                    sliderData, mainpitch, intro
+                                  }) => {
+  return (<>
+    <Slider sliderData={sliderData} />
+    <section className="section container">
+      <h1 className="title">{mainpitch.title}</h1>
+      <div className="float-content">
+        <div className="float-content__image">
+          <PreviewCompatibleImage imageInfo={mainpitch} />
+        </div>
+        <p className="subtitle">{mainpitch.description}</p>
+      </div>
+      <Features header={intro.header} gridItems={intro.blurbs} />
+      {/* <div className="columns">
                     <div className="column is-12 has-text-centered">
                       <Link className="btn" to="/products">
                         See all products
                       </Link>
                     </div>
                   </div> */}
-                  {/* <div className="column is-12">
+      {/* <div className="column is-12">
                     <h3 className="has-text-weight-semibold is-size-2">
                       Latest stories
                     </h3>
@@ -51,14 +40,8 @@ export const IndexPageTemplate = ({
                       </Link>
                     </div>
                   </div> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+    </section>
+  </>);
 };
 
 IndexPageTemplate.propTypes = {
@@ -66,30 +49,28 @@ IndexPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   mainpitch: PropTypes.object,
   intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
+    blurbs: PropTypes.array
+  })
 };
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  console.log('frontmatter', frontmatter)
-  return (
-    <Layout>
-      <IndexPageTemplate
-        sliderData={frontmatter.slider}
-        mainpitch={frontmatter.mainpitch}
-        intro={frontmatter.intro}
-      />
-    </Layout>
-  );
+  console.log("frontmatter", frontmatter);
+  return (<Layout>
+    <IndexPageTemplate
+      sliderData={frontmatter.slider}
+      mainpitch={frontmatter.mainpitch}
+      intro={frontmatter.intro}
+    />
+  </Layout>);
 };
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
+      frontmatter: PropTypes.object
+    })
+  })
 };
 
 export default IndexPage;
