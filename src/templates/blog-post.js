@@ -61,7 +61,7 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <div>Тарифы</div>
-      {/* <BlogPostTemplate
+      <BlogPostTemplate
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
@@ -76,7 +76,7 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
-      /> */}
+      />
     </Layout>
   );
 };

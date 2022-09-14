@@ -37,7 +37,7 @@ const AboutPage = ({ data }) => {
 
   return (
     <Layout>
-      <div>О себе</div>
+      <section className='container'>О себе</section>
       {/* <AboutPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
