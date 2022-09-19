@@ -1,0 +1,10 @@
+.button {
+  border-color: $border-color;
+  font-weight: 600;
+
+  &.centered {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

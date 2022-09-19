@@ -27,31 +27,33 @@ const Slider = ({ sliderData }) => {
 
   useEffect(() => {
     const elementsArr = Array.from(sliderRef.current.childNodes);
-    elementsArr[currentIndex].classList.add('next');
+    elementsArr[currentIndex].classList.add("next");
 
     const timerId = setInterval(() => {
-      elementsArr[currentIndex].classList.remove('next');
-      elementsArr[currentIndex].classList.add('prev');
-      elementsArr[nextIndex].classList.remove('prev');
-      elementsArr[nextIndex].classList.add('next');
+      elementsArr[currentIndex].classList.remove("next");
+      elementsArr[currentIndex].classList.add("prev");
+      elementsArr[nextIndex].classList.remove("prev");
+      elementsArr[nextIndex].classList.add("next");
       calcNextIndex();
     }, 10000);
 
-    return () => clearInterval(timerId)
+    return () => clearInterval(timerId);
   });
 
   return (
-    <div
-      ref={sliderRef}
-      className="slider-wrapper">
-      {images.map((image, index) => (
-        <div key={index} className={'slide'}>
-          {image}
-          <span className="text">{sliderData[index].text}</span>
-        </div>
-      ))}
+    <div className="padding-top-3">
+      <div
+        ref={sliderRef}
+        className="slider-wrapper">
+        {images.map((image, index) => (
+          <div key={index} className="slide">
+            {image}
+            <span className="text">{sliderData[index].text}</span>
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Slider;

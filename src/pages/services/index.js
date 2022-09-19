@@ -6,21 +6,27 @@ import Layout from "../../components/Layout";
 
 const Services = ({ data }) => {
   const { allMarkdownRemark: { edges } } = data;
-  console.log("services data", edges);
   return (
     <Layout>
-      <nav><a href="/service"></a></nav>
-      <section className="container">
-        <h1>Услуги</h1>
-        <nav className="nav-links-block">
-          {edges.map(link => (
-            <Link
-              key={link.node.fields.slug}
-              to={link.node.fields.slug}>
-              {link.node.frontmatter.title}
-            </Link>
-          ))}
-        </nav>
+      <section className="section is-flex-grow-1">
+        <div className="container">
+          <h1 className="h1">Услуги</h1>
+          <nav className="nav-links-list">
+            <ul>
+              {edges.map(link => (
+                <li
+                  key={link.node.fields.slug}
+                  className="link-wrapper">
+                  <Link
+                    className="link"
+                    to={link.node.fields.slug}>
+                    {link.node.frontmatter.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </section>
     </Layout>);
 };
@@ -40,6 +46,6 @@ export const pageQuery = graphql`
           }
         }
       }
-    }
+    } 
   }
 `;
