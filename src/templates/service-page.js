@@ -1,23 +1,34 @@
 import React from "react";
 import { graphql } from "gatsby";
+import cn from "classnames";
 
 import Layout from "../components/Layout";
+import Button from "../components/Button";
+import FullWidthImage from "../components/FullWidthImage";
 import { HTMLContent } from "../components/Content";
+import PriceBlock from "../components/PriceBlock";
 
 const ServicePage = ({ data, navigate }) => {
-  console.log('props', navigate);
-  const { markdownRemark: { frontmatter: { title, description }, html } } = data;
+  const { markdownRemark: { frontmatter: { image, title, description, priceList }, html } } = data;
   return (
     <Layout>
-      <section className="container">
-        <button type='button' onClick={() => navigate("/services")}>Вернуться к списку услуг</button>
-        <h1>{title}</h1>
-        <p>{description}</p>
-        <div className="service-content">
-          <HTMLContent content={html} />
+      <div className="section padding-bottom-0">
+        <div className="container">
+          <h1 className="h1">{title}</h1>
         </div>
-      </section>
-    </Layout>)
+      </div>
+      {image && <FullWidthImage image={image} />}
+      <div className={cn("section", { "padding-top-0": !image })}>
+        <div className="container">
+          <Button className="centered" onClick={() => navigate("/services")}>
+            Вернуться к списку услуг
+          </Button>
+          <p className="main-text margin-vertical-2">{description}</p>
+          <HTMLContent content={html} />
+          {!!priceList.service.length && <PriceBlock data={priceList} />}
+        </div>
+      </div>
+    </Layout>);
 };
 
 export default ServicePage;
@@ -32,12 +43,15 @@ export const pageQuery = graphql`
             gatsbyImageData(quality: 100, layout: FULL_WIDTH)
           }
         }
-        sublinks {
-          title
-          link
-        }
         title
         description
+        priceList {
+          title
+          service {
+            title
+            price
+          }
+        }
       }
     }
   }

@@ -1,0 +1,18 @@
+.nav-links-list {
+  display: flex;
+  justify-content: center;
+
+  .link-wrapper {
+    margin: .6rem 0;
+  }
+
+  .link {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $text-black;
+
+    &:hover {
+      color: $link-hover;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+.price-block {
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  overflow: hidden;
+}
+
+.price-block__header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid $border-color;
+  text-align: center;
+  font-weight: 600;
+  color: $headers-black;
+  background-color: $background-grey;
+}
+
+.price-block__row {
+  display: flex;
+  background-color: $background-light-grey;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+}
+
+.price-block__title {
+  width: 70%;
+  padding: 0.5rem 1rem;
+  border-right: 1px solid $border-color;
+}
+
+.price-block__value {
+  flex-grow: 1;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}

@@ -1,35 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import Features from "../components/Features";
-import BlogRoll from "../components/BlogRoll";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 export const IndexPageTemplate = ({
                                     sliderData, mainpitch, intro
                                   }) => {
-  return (<>
-    <Slider sliderData={sliderData} />
-    <section className="section container">
-      <h1 className="title">{mainpitch.title}</h1>
-      <div className="float-content">
-        <div className="float-content__image">
-          <PreviewCompatibleImage imageInfo={mainpitch} />
-        </div>
-        <p className="subtitle">{mainpitch.description}</p>
-      </div>
-      <Features header={intro.header} gridItems={intro.blurbs} />
-      {/* <div className="columns">
+  return (
+    <>
+      <Slider sliderData={sliderData} />
+      <section className="section">
+        <div className="container">
+          <h1 className="h1">{mainpitch.title}</h1>
+          <div className="float-content">
+            <div className="float-content__image">
+              <PreviewCompatibleImage imageInfo={mainpitch} />
+            </div>
+            <p className="main-text">{mainpitch.description}</p>
+          </div>
+          <Features header={intro.header} gridItems={intro.blurbs} />
+          {/* <div className="columns">
                     <div className="column is-12 has-text-centered">
                       <Link className="btn" to="/products">
                         See all products
                       </Link>
                     </div>
                   </div> */}
-      {/* <div className="column is-12">
+          {/* <div className="column is-12">
                     <h3 className="has-text-weight-semibold is-size-2">
                       Latest stories
                     </h3>
@@ -40,8 +41,9 @@ export const IndexPageTemplate = ({
                       </Link>
                     </div>
                   </div> */}
-    </section>
-  </>);
+        </div>
+      </section>
+    </>);
 };
 
 IndexPageTemplate.propTypes = {
@@ -55,7 +57,6 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  console.log("frontmatter", frontmatter);
   return (<Layout>
     <IndexPageTemplate
       sliderData={frontmatter.slider}
@@ -105,14 +106,6 @@ export const pageQuery = graphql`
               }
             }
             text
-          }
-        }
-        products {
-          title
-          description
-          sublist {
-            title
-            description
           }
         }
       }
