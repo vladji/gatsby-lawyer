@@ -56,13 +56,14 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
-  return (<Layout>
-    <IndexPageTemplate
-      sliderData={frontmatter.slider}
-      mainpitch={frontmatter.mainpitch}
-      intro={frontmatter.intro}
-    />
-  </Layout>);
+  return (
+    <Layout>
+      <IndexPageTemplate
+        sliderData={frontmatter.slider}
+        mainpitch={frontmatter.mainpitch}
+        intro={frontmatter.intro}
+      />
+    </Layout>);
 };
 
 IndexPage.propTypes = {
