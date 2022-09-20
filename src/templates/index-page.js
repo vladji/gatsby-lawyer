@@ -48,7 +48,6 @@ export const IndexPageTemplate = ({
 
 IndexPageTemplate.propTypes = {
   sliderData: PropTypes.array,
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   mainpitch: PropTypes.object,
   intro: PropTypes.shape({
     blurbs: PropTypes.array
